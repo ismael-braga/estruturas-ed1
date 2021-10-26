@@ -1,0 +1,81 @@
+Árvores Balanceadas
+- É uma árvore binária onde as alturas das sub-árvores "esquerda" e "direita" de cada nó diferem de no máximo uma unidade.
+- Essa diferença é chamada de "fator de balanceamento" do nó.
+
+Se a sub-árvore da direita é maior em 1 altura do que a sub-árvore da esquerda, o fator de balanceamento será de -1.
+Se a sub-árvore da esquerda é maior em 1 altura do que a sub-árvore da direita, o fator de balanceamento será de +1.
+
+- A eficiência da busca em uma árvore binária depende do seu balanceamento.
+
+"Problema"
+- Algoritmos de inserção e remoção não garantem que a árvore gerada a cada passo seja balanceada.
+- Sequência de inserções em ordem de "escada".
+
+Permite Rebalanceamento Local
+- Apenas a parte afetada pela "inserção" ou "remoção" é rebalanceada
+- Uso de rotações "simples" ou "duplas" na etapa de rebalanceamento
+
+- A Árvore AVL busca manter-se como uma "árvore binária quase completa"
+
+Fator de Balanceamento ou FB
+- Diferença nas alturas das sub-árvores "esquerda" e "direita"
+- Se uma das sub-árvores não existir, sua altura será -1
+
+Rotação
+- Operação básica para balanceamento da AVL
+- Dois tipos de rotações "simples" e "duplas"
+
+Simples 
+- O nó desbalanceado e seu filho estão no mesmo sentido da inclinação
+
+Duplas 
+- O nó está desbalanceado e seu filho está inclinado no sentido inverso ao pai
+- Equivale a duas rotações "simples" 
+
+- Existem 2 rotações "simples" e 2 "duplas"
+    - rotação à direita e à esquerda 
+
+"Rotação RR" ou "Rotação simples à esquerda"
+- o nó "C" é inserido na sub-árvore "direita" da sub-árvore "direita" de "A"
+- o nó intermediário "B" deve ser escolhido para ser a raiz da árvore resultante
+
+"Rotação LL" ou "Rotação simples à direita"
+- o nó "C" é inserido na sub-árvore "esquerda" da sub-árvore "esquerda" de "A"
+- o nó intermediário "B" deve ser escolhido para ser a raiz da árvore resultante
+
+"Rotação RL" ou "Rotação dupla à esquerda"
+- o nó "C" é inserido na sub-árvore "esquerda" da sub-árvore "direita" de "A"
+- o nó "C" deve ser escolhido para ser a raiz da árvore resultante
+
+"Rotação LR" ou "Rotação dupla à direita"
+- o nó "C" é inserido na sub-árvore "direita" da sub-árvore "esquerda" de "A"
+- o nó "C" deve ser escolhido para ser a raiz da árvore resultante
+
+"Quando usar cada rotação?"
+- Considerando que o nó "C" foi inserido como filho do nó "B", e que "B" é filho do nó "A", se o fator de balanceamento for 
+    - "A = +2" e "B = +1": Rotação LL
+    - "A = -2" e "B = -1": Rotação RR
+    - "A = +2" e "B = -1": Rotação LR
+    - "A = -2" e "B = +1": Rotação RL
+
+As rotações LL e RR são simétricas entre si, assim como a LR e a RL
+
+"Implementando as rotações"
+- As rotações são aplicadas no ancestral mais próximo do nó inserido cujo fator de balanceamento passa a ser +2 ou -2
+- Esse é o parâmetro das funções implementadas
+
+- As rotações "simples" (LL e RR) atualizam as novas alturas das sub-árvores
+- As rotações "duplas" (LR e RL) podem ser implementadas com 2 rotações simples
+
+
+
+Para inserir um valor "V" na árvore
+- "raiz" é None: insira o nó 
+- "V" é "menor" do que a raiz: vá para a sub-árvore "esquerda"
+- "V" é maior do que a raiz: vá para a sub-árvore "direita"
+- aplique o método "recursivamente"
+
+- Ao voltar na recursão, recalcule as alturas de cada sub-árvore 
+- Aplique a rotação necessária se o fator de balanceamento passa a ser +2 ou -2
+
+Também existe o caso onde a inserção é feita em uma árvore AVL que está vazia.

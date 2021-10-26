@@ -1,0 +1,2 @@
+from staticstack import PilhaEstatica
+from sequentiallist.lista_estatica import ListaEstatica

@@ -1,0 +1,18 @@
+Em Python, por outro lado, _não_existe_ o conceito de "público e privado" na sintaxe da linguagem. Existe sim, uma convenção de estilo que diz que nomes de atributos, métodos e funções iniciados com _ (um único underscore) não devem ser usados por usuários de uma classe, só pelos próprios implementadores - e que o funcionamento desses métodos e funções pode mudar sem nenhum aviso prévio.
+
+Então, para a maior parte dos atributos em Python, o mais comum é deixá-los simplesmente como um atributo de instância, que qualquer usuário da classe pode ler ou alterar sem depender de nenhum outro mecanismo, como em :
+
+class Ponto:
+   def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
+
+No entanto, os "getters" e "setters" podem ter funcionalidades adicionais além de simplesmente gravarem o valor pedido - podem transformar o valor armazenado, ou verificar se o valor está ok.
+
+Em Python, existe um mecanismo muito poderoso, chamado de "protocolo de descritores" (Descriptor Protocol), que faz com que um atributo de classe que seja um objeto que tenha métodos com alguns nomes especiais seja usado de forma diferente nas instâncias daquela classe (e mesmo na classe).
+
+O property é uma função built-in do Python que devolve um objeto com essas propriedades. Inclusive ele pode ser usado como uma função, não precisa ser usado com a sintaxe de decorador ("decorator" - usado com @ na linha que antecede a declaração de funções).
+
+Basicamente o property permite que você declare uma função para obter o valor de um atributo, e, opcionalmente, funções para funcionarem como o 'setter' e 'deleter' daquele atributo.
+
+Por exemplo, na classe "." acima, se eu quiser sempre arredondar o valor de "x" e "y" na leitura, e permitir que apenas valores numéricos sejam inseridos, ela pode ser descrita assim:

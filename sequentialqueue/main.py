@@ -1,0 +1,1 @@
+from staticqueue import FilaEstatica

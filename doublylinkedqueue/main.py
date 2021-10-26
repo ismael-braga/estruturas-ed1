@@ -1,0 +1,3 @@
+from node import No
+from doublylinkedqueue import FilaDuplamenteEncadeada
+from doublylinkedlist.doublylinkedlist import ListaDuplamenteEncadeada
